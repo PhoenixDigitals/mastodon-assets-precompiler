@@ -1,4 +1,4 @@
-FROM ruby:2.4.2-alpine3.7
+FROM ruby:2.4.3-alpine3.7
 
 LABEL maintainer="https://github.com/yukimochi/mastodon-assets-precompiler"
 
