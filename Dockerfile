@@ -1,4 +1,4 @@
-FROM ruby:2.4.3-alpine3.7
+FROM ruby:2.5.0-alpine3.7
 
 LABEL maintainer="https://github.com/yukimochi/mastodon-assets-precompiler"
 
@@ -40,8 +40,8 @@ RUN apk -U upgrade \
 RUN wget https://dl.minio.io/client/mc/release/linux-amd64/mc -O /usr/local/bin/mc \
     && chmod +x /usr/local/bin/mc
 
-RUN git clone -b master https://github.com/tootsuite/mastodon.git . \
-    && git checkout v2.1.0
+RUN git clone -b master https://github.com/ykzts/mastodon.git . \
+    && git checkout ruby-2.5
 
 RUN bundle install --deployment --without test development \
     && yarn --pure-lockfile \
