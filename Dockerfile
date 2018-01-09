@@ -1,4 +1,4 @@
-FROM ruby:2.5.0-alpine3.7
+FROM ruby:2.4-alpine3.7
 
 LABEL maintainer="https://github.com/yukimochi/mastodon-assets-precompiler"
 
@@ -37,11 +37,25 @@ RUN apk -U upgrade \
     && update-ca-certificates \
     && rm -rf /tmp/* /var/cache/apk/*
 
+RUN cd ~ \
+    && apk add -U cmake \
+    && git clone https://github.com/google/brotli.git \
+    && cd brotli \
+    && mkdir out \
+    && cd out \
+    && cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=./installed .. \
+    && cmake --build . --config Release --target install \
+    && cp installed/bin/brotli /usr/local/bin/ \
+    && cd /mastodon \
+    && rm -rf ~/brotli/ \
+    && apk del cmake --purge \
+    && rm -rf /tmp/* /var/cache/apk/*
+
 RUN wget https://dl.minio.io/client/mc/release/linux-amd64/mc -O /usr/local/bin/mc \
     && chmod +x /usr/local/bin/mc
 
-RUN git clone -b master https://github.com/ykzts/mastodon.git . \
-    && git checkout ruby-2.5
+RUN git clone -b master https://github.com/tootsuite/mastodon.git . \
+    && git checkout v2.1.2
 
 RUN bundle install --deployment --without test development \
     && yarn --pure-lockfile \

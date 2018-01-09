@@ -2,6 +2,9 @@
 [tootsuite/mastodon](https://github.com/tootsuite/mastodon) and it's dependencies
 
 ### Appendix Application
+[google/brotli](https://github.com/google/brotli)
+It provides the way to compress files with Brotli format.
+
 [minio/mc](https://github.com/minio/mc)
 It provides the way to push assets to your cloud storages.
 
