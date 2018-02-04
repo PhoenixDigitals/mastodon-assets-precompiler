@@ -28,6 +28,7 @@ RUN apk -U upgrade \
     libpq \
     libxml2 \
     libxslt \
+    linux-pam-dev \
     nodejs \
     nodejs-npm \
     protobuf \
