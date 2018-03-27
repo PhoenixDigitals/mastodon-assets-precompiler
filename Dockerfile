@@ -56,7 +56,7 @@ RUN wget https://dl.minio.io/client/mc/release/linux-amd64/mc -O /usr/local/bin/
     && chmod +x /usr/local/bin/mc
 
 RUN git clone -b master https://github.com/tootsuite/mastodon.git . \
-    && git checkout v2.3.0rc2
+    && git checkout v2.3.3
 
 RUN bundle install --deployment --without test development \
     && yarn --pure-lockfile \
