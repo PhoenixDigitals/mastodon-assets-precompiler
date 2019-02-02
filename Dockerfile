@@ -1,5 +1,5 @@
-FROM node:8.12.0-alpine as node
-FROM ruby:2.5-alpine
+FROM node:8-alpine as node
+FROM ruby:2.6-alpine
 
 LABEL maintainer="https://github.com/yukimochi/mastodon-assets-precompiler"
 
@@ -55,7 +55,7 @@ RUN cd ~ \
 RUN wget https://dl.minio.io/client/mc/release/linux-amd64/mc -O /usr/local/bin/mc \
     && chmod +x /usr/local/bin/mc
 
-RUN git clone -b v2.6.5 https://github.com/tootsuite/mastodon.git .
+RUN git clone -b v2.7.1 https://github.com/tootsuite/mastodon.git .
 
 RUN bundle install --deployment --without test development \
     && yarn --pure-lockfile \
